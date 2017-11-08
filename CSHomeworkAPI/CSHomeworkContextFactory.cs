@@ -9,7 +9,7 @@ using CSHomeworkAPI.Entities;
 
 namespace CSHomeworkAPI
 {
-    public class CSHomeworkContextFactory : IDesignTimeDbContextFactory<CSHomeworkContext>
+     public class CSHomeworkContextFactory : IDesignTimeDbContextFactory<CSHomeworkContext>
     {
         private readonly IConfiguration _configuration;
 
