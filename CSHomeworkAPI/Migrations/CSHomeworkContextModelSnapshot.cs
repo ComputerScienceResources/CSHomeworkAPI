@@ -31,11 +31,9 @@ namespace CSHomeworkAPI.Migrations
 
                     b.Property<string>("Cols");
 
-                    b.Property<bool>("CorrectAnswer")
-                        .HasMaxLength(255);
+                    b.Property<bool>("CorrectAnswer");
 
-                    b.Property<bool>("Explanation")
-                        .HasMaxLength(255);
+                    b.Property<bool>("Explanation");
 
                     b.Property<int>("Max");
 
