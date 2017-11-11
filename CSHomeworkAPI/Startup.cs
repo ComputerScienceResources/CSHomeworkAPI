@@ -37,12 +37,14 @@ namespace CSHomeworkAPI
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, CSHomeworkContext cSHomeworkContext)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            cSHomeworkContext.Database.Migrate();
 
             app.UseMvc(routes =>
             {
