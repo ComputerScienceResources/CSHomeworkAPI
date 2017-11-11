@@ -44,10 +44,8 @@ namespace CSHomeworkAPI.Entities
 
         public string Cols { get; set; }
 
-        [MaxLength(255)]
         public bool CorrectAnswer { get; set; }
-
-        [MaxLength(255)]
+    
         public bool Explanation { get; set; }
     }
 }
