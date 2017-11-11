@@ -16,11 +16,11 @@ namespace CSHomeworkAPI
 {
     public class Startup
     {
-        public IConfiguration Configuration { get; }
+        public IConfiguration _configuration { get; }
 
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            _configuration = configuration;
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -31,7 +31,7 @@ namespace CSHomeworkAPI
                 .AddMvcOptions(o => o.OutputFormatters.Add(
                     new XmlDataContractSerializerOutputFormatter()));
 
-            var connectionString = Configuration["connectionStrings:DefaultConnection"];
+            var connectionString = _configuration["connectionStrings:DefaultConnection"];
             services.AddDbContext<CSHomeworkContext>(o => o.UseSqlServer(connectionString));
 
         }

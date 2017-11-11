@@ -11,16 +11,19 @@ namespace CSHomeworkAPI
 {
      public class CSHomeworkContextFactory : IDesignTimeDbContextFactory<CSHomeworkContext>
     {
-        private readonly IConfiguration _configuration;
-
-        public CSHomeworkContextFactory(IConfiguration configuration)
+        public CSHomeworkContextFactory()
         {
-            _configuration = configuration;
+
         }
+
+        //public CSHomeworkContextFactory(IConfiguration configuration)
+        //{
+        //    _configuration = configuration;
+        //}
 
         public CSHomeworkContext CreateDbContext(string[] args)
         {
-            var connectionString = _configuration["connectionStrings:DefaultConnection"];
+            var connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=CSHomeworkDB;Trusted_Connection=True;";
 
             var optionsBuilder = new DbContextOptionsBuilder<CSHomeworkContext>();
             optionsBuilder.UseSqlServer(connectionString);
