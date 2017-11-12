@@ -33,6 +33,8 @@ namespace CSHomeworkAPI
                 options.Filters.Add(new RequireHttpsAttribute());
             });
 
+            services.AddCors();
+
             services.AddMvc()
                 .AddMvcOptions(o => o.OutputFormatters.Add(
                     new XmlDataContractSerializerOutputFormatter()));
@@ -49,6 +51,12 @@ namespace CSHomeworkAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            // Shows UseCors with CorsPolicyBuilder.
+            app.UseCors(builder =>
+               builder.WithOrigins("http://http://cshomeworkapi.azurewebsites.net")
+               .AllowAnyHeader()
+               );
 
             var options = new RewriteOptions()
                 .AddRedirectToHttps();
