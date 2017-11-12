@@ -47,5 +47,8 @@ namespace CSHomeworkAPI.Entities
         public bool CorrectAnswer { get; set; }
     
         public bool Explanation { get; set; }
+
+        public ICollection<Answer> Answers { get; set; }
+        = new List<Answer>();
     }
 }

@@ -14,8 +14,8 @@ namespace CSHomeworkAPI.Entities
         public int Id { get; set; }
 
         [ForeignKey("QuestionId")]
-        public int QuestionId { get; set; }
         public Question Question { get; set; }
+        public int QuestionId { get; set; }
 
         [Required]
         [MaxLength(255)]
