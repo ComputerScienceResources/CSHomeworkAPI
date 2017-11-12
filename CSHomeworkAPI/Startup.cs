@@ -10,7 +10,8 @@ using Microsoft.AspNetCore.Mvc.Formatters;
 using CSHomeworkAPI.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Rewrite;
 
 namespace CSHomeworkAPI
 {
@@ -27,6 +28,11 @@ namespace CSHomeworkAPI
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<MvcOptions>(options =>
+            {
+                options.Filters.Add(new RequireHttpsAttribute());
+            });
+
             services.AddMvc()
                 .AddMvcOptions(o => o.OutputFormatters.Add(
                     new XmlDataContractSerializerOutputFormatter()));
@@ -43,6 +49,9 @@ namespace CSHomeworkAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            var options = new RewriteOptions()
+                .AddRedirectToHttps();
 
             cSHomeworkContext.Database.Migrate();
 
