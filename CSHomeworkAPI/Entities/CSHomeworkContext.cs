@@ -21,8 +21,8 @@ namespace CSHomeworkAPI.Entities
         {
         }
 
-        public DbSet<Question> Question { get; set; }
-
+        public DbSet<Question> Questions { get; set; }
+        public DbSet<Answer> Answers { get; set; }
     }
 
 }

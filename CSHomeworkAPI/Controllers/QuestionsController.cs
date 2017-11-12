@@ -24,7 +24,7 @@ namespace CSHomeworkAPI.Controllers
         [HttpGet]
         public IEnumerable<Question> GetQuestion()
         {
-            return _context.Question;
+            return _context.Questions;
         }
 
         // GET: api/Questions/5
@@ -36,7 +36,7 @@ namespace CSHomeworkAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var question = await _context.Question.SingleOrDefaultAsync(m => m.Id == id);
+            var question = await _context.Questions.SingleOrDefaultAsync(m => m.Id == id);
 
             if (question == null)
             {
@@ -90,7 +90,7 @@ namespace CSHomeworkAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            _context.Question.Add(question);
+            _context.Questions.Add(question);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetQuestion", new { id = question.Id }, question);
@@ -105,13 +105,13 @@ namespace CSHomeworkAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var question = await _context.Question.SingleOrDefaultAsync(m => m.Id == id);
+            var question = await _context.Questions.SingleOrDefaultAsync(m => m.Id == id);
             if (question == null)
             {
                 return NotFound();
             }
 
-            _context.Question.Remove(question);
+            _context.Questions.Remove(question);
             await _context.SaveChangesAsync();
 
             return Ok(question);
@@ -119,7 +119,7 @@ namespace CSHomeworkAPI.Controllers
 
         private bool QuestionExists(int id)
         {
-            return _context.Question.Any(e => e.Id == id);
+            return _context.Questions.Any(e => e.Id == id);
         }
     }
 }

@@ -5,7 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Properties\PublishProfiles\CSHomeworkAPI - Web Deploy.pubxml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="Properties\PublishProfiles\" />
     <Folder Include="Services\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
