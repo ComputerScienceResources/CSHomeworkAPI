@@ -54,9 +54,11 @@ namespace CSHomeworkAPI
 
             // Shows UseCors with CorsPolicyBuilder.
             app.UseCors(builder =>
-               builder.WithOrigins("http://http://cshomeworkapi.azurewebsites.net")
-               .AllowAnyHeader()
-               );
+            builder.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowCredentials()
+            );
 
             var options = new RewriteOptions()
                 .AddRedirectToHttps();
