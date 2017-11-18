@@ -28,7 +28,6 @@ namespace CSHomeworkAPI.Controllers
             return _context.Questions.Include(qu => qu.Answers).ToList();
             //return _context.Questions.OrderBy(qu => qu.Answers).ToList();
 
-
         }
 
         // GET: api/Questions/5
