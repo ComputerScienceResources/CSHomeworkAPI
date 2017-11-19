@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Rewrite;
+using CSHomeworkAPI.DtoObjects;
 
 namespace CSHomeworkAPI
 {
@@ -64,6 +65,11 @@ namespace CSHomeworkAPI
                 .AddRedirectToHttps();
 
             cSHomeworkContext.Database.Migrate();
+
+            AutoMapper.Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<Entities.Question, QuestionDTO>();
+            });
 
             app.UseMvc(routes =>
             {

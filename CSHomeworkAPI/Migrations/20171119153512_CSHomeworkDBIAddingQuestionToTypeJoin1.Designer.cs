@@ -11,9 +11,10 @@ using System;
 namespace CSHomeworkAPI.Migrations
 {
     [DbContext(typeof(CSHomeworkContext))]
-    partial class CSHomeworkContextModelSnapshot : ModelSnapshot
+    [Migration("20171119153512_CSHomeworkDBIAddingQuestionToTypeJoin1")]
+    partial class CSHomeworkDBIAddingQuestionToTypeJoin1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

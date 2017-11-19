@@ -11,9 +11,10 @@ using System;
 namespace CSHomeworkAPI.Migrations
 {
     [DbContext(typeof(CSHomeworkContext))]
-    partial class CSHomeworkContextModelSnapshot : ModelSnapshot
+    [Migration("20171119150427_CSHomeworkDBIAddingTypesEntity")]
+    partial class CSHomeworkDBIAddingTypesEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,17 +48,16 @@ namespace CSHomeworkAPI.Migrations
                         .IsRequired()
                         .HasMaxLength(255);
 
-                    b.Property<int>("QuestionTypeID");
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasMaxLength(255);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("QuestionTypeID")
-                        .IsUnique();
 
                     b.ToTable("Questions");
                 });
 
-            modelBuilder.Entity("CSHomeworkAPI.Entities.QuestionType", b =>
+            modelBuilder.Entity("CSHomeworkAPI.Entities.Type", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -68,7 +68,7 @@ namespace CSHomeworkAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("QuestionTypes");
+                    b.ToTable("Types");
                 });
 
             modelBuilder.Entity("CSHomeworkAPI.Entities.Answer", b =>
@@ -76,14 +76,6 @@ namespace CSHomeworkAPI.Migrations
                     b.HasOne("CSHomeworkAPI.Entities.Question", "Question")
                         .WithMany()
                         .HasForeignKey("QuestionId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("CSHomeworkAPI.Entities.Question", b =>
-                {
-                    b.HasOne("CSHomeworkAPI.Entities.QuestionType", "QuestionType")
-                        .WithOne("Question")
-                        .HasForeignKey("CSHomeworkAPI.Entities.Question", "QuestionTypeID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

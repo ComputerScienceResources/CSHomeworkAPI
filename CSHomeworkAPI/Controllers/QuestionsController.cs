@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CSHomeworkAPI.Entities;
+using AutoMapper;
+using CSHomeworkAPI.DtoObjects;
 
 namespace CSHomeworkAPI.Controllers
 {
@@ -22,12 +24,9 @@ namespace CSHomeworkAPI.Controllers
 
         // GET: api/Questions
         [HttpGet]
-        public IEnumerable<Question> GetQuestion()
+        public IEnumerable<Entities.Question> GetQuestion()
         {
-            //return _context.Questions;
-            return _context.Questions.Include(qu => qu.Answers).ToList();
-            //return _context.Questions.OrderBy(qu => qu.Answers).ToList();
-
+            return _context.Questions;
         }
 
         // GET: api/Questions/5
@@ -51,7 +50,7 @@ namespace CSHomeworkAPI.Controllers
 
         // PUT: api/Questions/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutQuestion([FromRoute] int id, [FromBody] Question question)
+        public async Task<IActionResult> PutQuestion([FromRoute] int id, [FromBody] Entities.Question question)
         {
             if (!ModelState.IsValid)
             {
@@ -86,7 +85,7 @@ namespace CSHomeworkAPI.Controllers
 
         // POST: api/Questions
         [HttpPost]
-        public async Task<IActionResult> PostQuestion([FromBody] Question question)
+        public async Task<IActionResult> PostQuestion([FromBody] Entities.Question question)
         {
             if (!ModelState.IsValid)
             {
