@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -10,6 +11,7 @@ namespace CSHomeworkAPI.Entities
     public class Question
     {
         [Key]
+        [JsonIgnore]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
@@ -17,9 +19,16 @@ namespace CSHomeworkAPI.Entities
         [MaxLength(255)]
         public string Label { get; set; }
 
+        [JsonIgnore]
         public int QuestionTypeID { get; set; }
         [ForeignKey("QuestionTypeID")]
         public virtual QuestionType QuestionType { get; set; }
+
+        [JsonIgnore]
+        public int QuestionOptionID { get; set; }
+        [ForeignKey("QuestionOptionID")]
+        public virtual QuestionOption QuestionOption { get; set; }
+
     }
 }
 

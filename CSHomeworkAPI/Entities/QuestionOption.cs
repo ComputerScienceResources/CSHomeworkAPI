@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CSHomeworkAPI.Entities
 {
-    public class QuestionType
+    public class QuestionOption
     {
         [Key]
         [JsonIgnore]
@@ -20,8 +20,7 @@ namespace CSHomeworkAPI.Entities
         public string Label { get; set; }
 
         [JsonIgnore]
-        [InverseProperty("QuestionType")]
+        [InverseProperty("QuestionOption")]
         public virtual Question Question { get; set; }
-
     }
 }

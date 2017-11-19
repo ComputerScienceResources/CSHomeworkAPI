@@ -11,9 +11,10 @@ using System;
 namespace CSHomeworkAPI.Migrations
 {
     [DbContext(typeof(CSHomeworkContext))]
-    partial class CSHomeworkContextModelSnapshot : ModelSnapshot
+    [Migration("20171119190954_CSHomeworkDBAddQuestionOptionsEntity")]
+    partial class CSHomeworkDBAddQuestionOptionsEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,33 +48,14 @@ namespace CSHomeworkAPI.Migrations
                         .IsRequired()
                         .HasMaxLength(255);
 
-                    b.Property<int>("QuestionOptionID");
-
                     b.Property<int>("QuestionTypeID");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("QuestionOptionID")
-                        .IsUnique();
 
                     b.HasIndex("QuestionTypeID")
                         .IsUnique();
 
                     b.ToTable("Questions");
-                });
-
-            modelBuilder.Entity("CSHomeworkAPI.Entities.QuestionOption", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Label")
-                        .IsRequired()
-                        .HasMaxLength(255);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("QuestionOptions");
                 });
 
             modelBuilder.Entity("CSHomeworkAPI.Entities.QuestionType", b =>
@@ -100,11 +82,6 @@ namespace CSHomeworkAPI.Migrations
 
             modelBuilder.Entity("CSHomeworkAPI.Entities.Question", b =>
                 {
-                    b.HasOne("CSHomeworkAPI.Entities.QuestionOption", "QuestionOption")
-                        .WithOne("Question")
-                        .HasForeignKey("CSHomeworkAPI.Entities.Question", "QuestionOptionID")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("CSHomeworkAPI.Entities.QuestionType", "QuestionType")
                         .WithOne("Question")
                         .HasForeignKey("CSHomeworkAPI.Entities.Question", "QuestionTypeID")
