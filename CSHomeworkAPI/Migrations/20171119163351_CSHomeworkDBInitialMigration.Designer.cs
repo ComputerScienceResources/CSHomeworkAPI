@@ -11,8 +11,8 @@ using System;
 namespace CSHomeworkAPI.Migrations
 {
     [DbContext(typeof(CSHomeworkContext))]
-    [Migration("20171112150552_CSHomeworkDBAddAnswerQuestionJoin")]
-    partial class CSHomeworkDBAddAnswerQuestionJoin
+    [Migration("20171119163351_CSHomeworkDBInitialMigration")]
+    partial class CSHomeworkDBInitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -44,51 +44,47 @@ namespace CSHomeworkAPI.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ClassName")
-                        .IsRequired()
-                        .HasMaxLength(10);
-
-                    b.Property<string>("Cols");
-
-                    b.Property<bool>("CorrectAnswer");
-
-                    b.Property<bool>("Explanation");
-
-                    b.Property<int>("Max");
-
-                    b.Property<int>("MaxLength");
-
-                    b.Property<int>("Min");
-
-                    b.Property<int>("MinLength");
-
-                    b.Property<string>("Pattern")
-                        .HasMaxLength(255);
-
-                    b.Property<string>("PlaceHolder")
+                    b.Property<string>("Label")
                         .IsRequired()
                         .HasMaxLength(255);
 
-                    b.Property<string>("Rows");
-
-                    b.Property<string>("Text")
-                        .IsRequired()
-                        .HasMaxLength(255);
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasMaxLength(10);
+                    b.Property<int>("QuestionTypeID");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("QuestionTypeID")
+                        .IsUnique();
+
                     b.ToTable("Questions");
+                });
+
+            modelBuilder.Entity("CSHomeworkAPI.Entities.QuestionType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Label")
+                        .IsRequired()
+                        .HasMaxLength(255);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("QuestionTypes");
                 });
 
             modelBuilder.Entity("CSHomeworkAPI.Entities.Answer", b =>
                 {
                     b.HasOne("CSHomeworkAPI.Entities.Question", "Question")
-                        .WithMany("Answers")
+                        .WithMany()
                         .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("CSHomeworkAPI.Entities.Question", b =>
+                {
+                    b.HasOne("CSHomeworkAPI.Entities.QuestionType", "QuestionType")
+                        .WithOne("Question")
+                        .HasForeignKey("CSHomeworkAPI.Entities.Question", "QuestionTypeID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

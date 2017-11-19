@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace CSHomeworkAPI.Migrations
 {
-    public partial class CSHomeworkDBIAddingQuestionToTypeJoin2 : Migration
+    public partial class CSHomeworkDBInitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

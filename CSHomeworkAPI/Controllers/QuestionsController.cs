@@ -26,7 +26,8 @@ namespace CSHomeworkAPI.Controllers
         [HttpGet]
         public IEnumerable<Entities.Question> GetQuestion()
         {
-            return _context.Questions;
+            return _context.Questions
+                .Include(t => t.QuestionType);
         }
 
         // GET: api/Questions/5
